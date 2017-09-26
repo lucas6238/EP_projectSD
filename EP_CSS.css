@@ -1,0 +1,23 @@
+body{
+    font-family: helvetica;
+}
+.wrapper{
+    background-color:white;
+}
+h1{
+    
+    color:black;
+}
+td{
+/*    color:blue;
+    background-color:grey;
+    */
+    padding:10px;
+
+    text-align:center;
+}
+.ft{
+    /* it likes this comment*/
+    text-align:center;
+}
+
