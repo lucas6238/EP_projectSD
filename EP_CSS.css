@@ -20,4 +20,19 @@ td{
     /* it likes this comment*/
     text-align:center;
 }
+.error{
+    color:red;
+}
+.badScore{
+    background-color:red;
+    
+}
+.goodScore{
+    background-color:green;
+}
+.dropDown{
+    width:100%;
+    text-align: center;
+    
+}
 

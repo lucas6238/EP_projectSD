@@ -1,13 +1,4 @@
-<?php echo ("<?xml version=\"1.0\" encoding=\"utf-8\"?" . ">"); ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
-<style>
-<?php include 'EP_CSS.css'; ?>
-</style>
-<head>
-    <title>Clicker Data Display</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
-</head>
 
 <?php
 /*
@@ -19,36 +10,53 @@
   display data from a database in meaningful ways
  * Clicker data from iclickers
  */
-?>
 
-<body class="wrapper">
 
-    <?php
+
+    
 //this line of php code refences another php file that will run at this point in the program
 //since it switches to the php file the
-    include("EP_Header.php");
+   // include("EP_Header.php");
 
+ 
 
+    include("connectDatabase.php");
 
-    $DBname = "ep_project";
-    $connection = mysqli_connect("localhost", "root");
-    if ($connection) {
-        echo"connection success";
-    } else {
-        echo"no connection";
+    $table = "questionData";
+    
+    
+    
+    switch($_SESSION['Qpick']){
+        case 0: echo"nothing";
+            break;
+        case 1: echo"all";
+            $SQLString = "select * from $table where "
+            . "Question = $questionID "
+            . "and Date = '$dateID'"
+            . "and Session = '$sessionID'";
+            break;
+        case 2: echo"Date sess";
+            $SQLString = "select * from $table where "
+            
+            . " Date = '$dateID'"
+            . "and Session = '$sessionID'";
+            break;
+        case 3: echo"date question";
+            $SQLString = "select * from $table where "
+            . "Question = $questionID "
+            . "and Date = '$dateID'";
+            break;
+        case 4: echo"date only";
+            $SQLString = "select * from $table where "
+            
+            . "Date = '$dateID' order by question asc";
+            
+            break;
     }
-
-//after the php sectiont closes the text statements are written as lines with bold
-//numbers at the end of the lines 
-
-    if (mysqli_select_db($connection, $DBname) === FALSE) {
-        echo "<p>Could not select the \"$DBname\" " .
-        "database: " . mysqli_error($connection) . "</p>\n";
-    }
-
-
-
-    $SQLString = "Select * from questions";
+    
+    
+    
+    echo $SQLString;
 
     $queryResult = mysqli_query($connection, $SQLString);
     if ($queryResult === FALSE) {
@@ -56,25 +64,36 @@
         . "<p>Error code " . mysqli_errno($connection)
         . ": " . mysqli_error($connection) . "</p>";
     }
-    echo "<h3>Clicker Data Viewer</h3>" .
-    "<h2>Question Specific Results</h2>" .
+     
+    echo"<h2>Question Specific Results</h2>" .
     "<table width='100%' border='1'>" .
-    "<tr><th>SessionID</th>" .
-    "<th>QuestionID</th>" .
-    "<th>Average Score</th>" .
-    "<th>Percentage Correct</th>" .
-    "<th>Difficulty</th>";
+    "<tr><th>Session</th>" .
+    "<th>Date</th>" .
+    "<th>Question</th>" .
+    "<th>Number of Responses</th>" .
+    "<th>Average Points Scored</th>" .
+    "<th>Percentage of Correct Responses</th>";
 
 
     $i = 0;
     while ($row = mysqli_fetch_assoc($queryResult)) {
         
         // extract($row);
-        echo "<tr><td>" . $row["SessionID"] . "</td>\n";
-        echo "<td>" . $row["QuestionID"] . "</td>\n";
-        echo "<td>" . $row["averageScore"] . "</td>\n";
-        echo "<td>" . $row["difficulty"] . "</td>\n";
-        echo "<td>" . $row["difficulty"] . "%</td>\n";
+        echo "<tr><td>" . $row["Session"] . "</td>\n";
+        echo "<td>" . $row["Date"] . "</td>\n";
+        echo "<td>" . $row["Question"] . "</td>\n";
+        echo "<td>" . $row["Responses"] . "</td>\n";
+        if($row["AveragePoints"] <=.5){
+            echo "<td class=\"badScore\">" . $row["AveragePoints"] . "</td>\n";
+        }
+        if($row["AveragePoints"] >=1.5){
+            echo "<td class=\"goodScore\">" . $row["AveragePoints"] . "</td>\n";
+        }
+        if($row["AveragePoints"] <1.5 && $row["AveragePoints"] >.5){
+            echo "<td>" . $row["AveragePoints"] . "</td>\n";
+        }
+        
+        echo "<td>" . ($row["AveragePercentage"] *100) . "%</td>\n";
       
         "\">Update</a></td></tr>\n" .
         "</table>\n";
@@ -89,13 +108,12 @@
 
 //here at the end, another file is refeneced that will execute at this point in the file 
 //as if it had been written here.\
-    echo"<br> <a href=\"index.php\"> Return Home</a>";
-    include("EP_Footer.php");
-    ?> 
+  //  echo"<br> <a href=\"index.php\"> Return Home</a>";
+  //  include("EP_Footer.php");
+   
 
 
 
 
 
-</body>
-</html>
+
