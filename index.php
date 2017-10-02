@@ -29,33 +29,42 @@
 //this line of php code refences another php file that will run at this point in the program
 //since it switches to the php file the
     include("EP_Header.php");
-    $questionID = $errQID = "";
-    $sessionID = $errSessID = "";
-    $dateID = $errDate = "";
+    $questionID  = "";
+    $sessionID  = "";
+    $dateID = "";
     $DateComplete = false;
     $Qcomplete= false;
     $Scomplete =false;
+    $sessionDisplay="";
+    $questionDisplay="";
     $_SESSION['Qpick'] =0;
     
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         //Question
-        if(empty($_POST["questionID"])){
+        if($_POST["questionID"] == 0){
+            $questionDisplay="All";
            // $errQID = "QuestionID is not required";
            
            
         }
         else{
             $questionID = $_POST["questionID"];
+            $questionDisplay=$questionID;
              $Qcomplete = true;
            // include("questionSummary.php");
         }
          //Session
-        if(empty($_POST["sessionID"])){
+        if(strcasecmp($_POST["sessionID"], "Both") == 0){
+            $sessionID = "";
+            $sessionDisplay = "Both";
+            echo "this should be running";
            // $errSessID = "sessionID is  not required";
            
         }
         else{
+            
             $sessionID = $_POST["sessionID"];
+            $sessionDisplay = $sessionID;
              $Scomplete = true;
            // include("questionSummary.php");
         }
@@ -101,10 +110,31 @@
                 <td><select class="dropDown" name="sessionID">
                              
                         
-                        
-                        <option value="">Both</option>
+                        <option value="<?php echo$sessionDisplay?>">Last used:<?php echo $sessionDisplay?></option>
+                        <option value="Both">Both</option>
                         <option value="10AM">10AM</option>
                         <option value="11AM">11AM</option>
+                    </select>
+                    
+                </td>
+                
+            </tr>
+        
+             <tr>
+                <td>Question</td>
+                <td><select class="dropDown" name="questionID">
+                        <option value="<?php echo$questionDisplay?>">Last used:<?php echo $questionDisplay?></option>
+                        <option value="0">All</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                        <option value="9">9</option>
+                        <option value="10">10</option>
                     </select>
                     
                 </td>
@@ -124,13 +154,14 @@
                            value="<?php echo $sessionID?>"/></td>
                 <td><span class="error"> <?php echo $errSessID?></span></td>
             </tr>
-        -->
+        
         <tr>
                 <td>Question</td>
                 <td><input type="text" name="questionID" 
                            value="<?php echo $questionID?>"/></td>
                 <td><span class="error"> <?php echo $errQID?></span></td>
             </tr>
+        -->
             <tr>
                 <td></td>
                 <td> <input style="width:100%;" type="submit" name="submitQuestion" value="Select Question"/> </td> 
