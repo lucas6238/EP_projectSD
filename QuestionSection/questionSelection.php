@@ -22,21 +22,28 @@
 ?>
 
 <body class="wrapper">
-
+ <nav>
+        <a href='../homepage.php'>Home</a>
+        <a href='../StudentSection/studentSelection.php'>Student</a>
+        <a href='../QuestionSection/QuestionSelection.php'>Question</a>
+         
+    </nav>
     <?php
     session_start();
-    
+   // error_reporting(0);
 //this line of php code refences another php file that will run at this point in the program
 //since it switches to the php file the
-    include("EP_Header.php");
+    include("../all/EP_Header.php");
     $questionID  = "";
     $sessionID  = "";
     $dateID = "";
+    $errDate = "";
     $DateComplete = false;
     $Qcomplete= false;
     $Scomplete =false;
     $sessionDisplay="";
     $questionDisplay="";
+    $dateDisplay="";
     $_SESSION['Qpick'] =0;
     
     if($_SERVER["REQUEST_METHOD"]=="POST"){
@@ -57,8 +64,7 @@
         if(strcasecmp($_POST["sessionID"], "Both") == 0){
             $sessionID = "";
             $sessionDisplay = "Both";
-            echo "this should be running";
-           // $errSessID = "sessionID is  not required";
+           
            
         }
         else{
@@ -82,7 +88,7 @@
     
     ?>
    
-    <p>
+   
         
 <h2>Question Data</h2>
 
@@ -102,6 +108,7 @@
                     </select>
                     
                 </td>
+                <td><span class="error"><?php echo $errDate?></span></td>
                 
             </tr>
         
@@ -123,7 +130,7 @@
              <tr>
                 <td>Question</td>
                 <td><select class="dropDown" name="questionID">
-                        <option value="<?php echo$questionDisplay?>">Last used:<?php echo $questionDisplay?></option>
+                        <option value="<?php echo$questionID?>">Last used:<?php echo $questionDisplay?></option>
                         <option value="0">All</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -140,28 +147,7 @@
                 </td>
                 
             </tr>
-        <!--
-            <tr>
-                <td>Date</td>
-                <td><input type="text" name="dateID" 
-                           value="<?php echo $dateID?>"/></td>
-                <td><span class="error"> <?php echo $errDate?></span></td>
-            </tr>
-        
-            <tr>
-                <td>Session</td>
-                <td><input type="text" name="sessionID" 
-                           value="<?php echo $sessionID?>"/></td>
-                <td><span class="error"> <?php echo $errSessID?></span></td>
-            </tr>
-        
-        <tr>
-                <td>Question</td>
-                <td><input type="text" name="questionID" 
-                           value="<?php echo $questionID?>"/></td>
-                <td><span class="error"> <?php echo $errQID?></span></td>
-            </tr>
-        -->
+       
             <tr>
                 <td></td>
                 <td> <input style="width:100%;" type="submit" name="submitQuestion" value="Select Question"/> </td> 
@@ -205,7 +191,7 @@
                 
 //here at the end, another file is refeneced that will execute at this point in the file 
 //as if it had been written here.
-                include("EP_Footer.php");
+                include("../all/EP_Footer.php");
                 session_destroy();
                 ?> 
 

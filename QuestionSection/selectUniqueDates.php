@@ -6,11 +6,11 @@
  * and open the template in the editor.
  */
 
-include("connectDatabase.php");
+include("../all/connectDatabase.php");
 
 $table = "questionData";
 
-$SQLString = "select distinct session from $table ";
+$SQLString = "select Distinct date from $table order by date asc";
 
 $queryResult = mysqli_query($connection, $SQLString);
     if ($queryResult === FALSE) {
@@ -26,7 +26,7 @@ $queryResult = mysqli_query($connection, $SQLString);
     while ($row = mysqli_fetch_assoc($queryResult)) {
         
         // extract($row);
-        echo "<option>" . $row["session"] . "</option>";
+        echo "<option>" . $row["date"] . "</option>";
         
        
         $i++;

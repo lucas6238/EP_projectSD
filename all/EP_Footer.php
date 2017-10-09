@@ -6,3 +6,9 @@
  * and open the template in the editor.
  */
 
+?>
+<style>
+<?php include 'EP_CSS.css'; ?>
+</style>
+
+<p class="ft"> &copy WMU CIS 4990 ENTERPRISE PROJECT</p>

@@ -20,20 +20,20 @@
 
  
 
-    include("connectDatabase.php");
-
-    $table = "questionData";
+    include("../all/connectDatabase.php");
     
+    $table = "student";
     
+    $skip = true;
     
-    switch($_SESSION['Qpick']){
-        case 0: echo"nothing";
+    switch($_SESSION['Spick']){
+        case 0: echo"bat nothing";
+           $skip=false;
+            
             break;
         case 1: echo"all";
             $SQLString = "select * from $table where "
-            . "Question = $questionID "
-            . "and Date = '$dateID'"
-            . "and Session = '$sessionID'";
+            . "SID like '$studentID%'";
             break;
         case 2: echo"Date sess";
             $SQLString = "select * from $table where "
@@ -54,58 +54,45 @@
             break;
     }
     
-    
-    
-    echo $SQLString;
-
+    echo $skip;
+    if($skip){
+    echo $SQLString . "<br>";
+   
+      
     $queryResult = mysqli_query($connection, $SQLString);
     if ($queryResult === FALSE) {
-        echo "<p>Unable to execute the query.</p>"
-        . "<p>Error code " . mysqli_errno($connection)
-        . ": " . mysqli_error($connection) . "</p>";
+//        echo "<p>Unable to execute the query.</p>"
+//        . "<p>Error code " . mysqli_errno($connection)
+//        . ": " . mysqli_error($connection) . "</p>";
     }
      
     echo"<h2>Question Specific Results</h2>" .
     "<table width='100%' border='1'>" .
-    "<tr><th>Session</th>" .
-    "<th>Date</th>" .
-    "<th>Question</th>" .
-    "<th>Number of Responses</th>" .
-    "<th>Average Points Scored</th>" .
-    "<th>Percentage of Correct Responses</th>";
+    "<tr><th>Student ID</th>" .
+    "<th>Session</th>";
 
 
     $i = 0;
+   
+
+        
     while ($row = mysqli_fetch_assoc($queryResult)) {
         
         // extract($row);
-        echo "<tr><td>" . $row["Session"] . "</td>\n";
-        echo "<td>" . $row["Date"] . "</td>\n";
-        echo "<td>" . $row["Question"] . "</td>\n";
-        echo "<td>" . $row["Responses"] . "</td>\n";
-        if($row["AveragePoints"] <=.5){
-            echo "<td class=\"badScore\">" . $row["AveragePoints"] . "</td>\n";
-        }
-        if($row["AveragePoints"] >=1.5){
-            echo "<td class=\"goodScore\">" . $row["AveragePoints"] . "</td>\n";
-        }
-        if($row["AveragePoints"] <1.5 && $row["AveragePoints"] >.5){
-            echo "<td>" . $row["AveragePoints"] . "</td>\n";
-        }
+        echo "<tr><td>" . $row["SID"] . "</td>\n";
+        echo "<td>" . $row["Session"] . "</td>\n";
         
-        echo "<td>" . ($row["AveragePercentage"] *100) . "%</td>\n";
-      
-        "\">Update</a></td></tr>\n" .
         "</table>\n";
         $i++;
     }
+    
     echo "times ran " . $i;
     mysqli_free_result($queryResult);
     echo "</table>\n";
     
+   
 
-
-
+    }
 //here at the end, another file is refeneced that will execute at this point in the file 
 //as if it had been written here.\
   //  echo"<br> <a href=\"index.php\"> Return Home</a>";
