@@ -9,20 +9,25 @@ and open the template in the editor.
         <title>Sign In</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link  type="text/css" rel="stylesheet" href="w3.css">
+        <link  type="text/css" rel="stylesheet" href="../all/EP_CSS.css">
     </head>
-    <body class = " w3-blue">
+    <body >
 
         <?php
-       
-        include 'StartConnection.php';
+        
+        include ("../all/connectDatabase.php");
+        include ("../all/helperfunctions.php");
+        
+        session_start();
+            testHashs();
         ?>
 
         <div class=' w3-container w3-section w3-center'>
             <div class = "w3-white w3-padding-large">
                 <h1 >Login</h1>
 
-                <form action="SignInFORM.php" method='POST' >
+                <form action="
+                      <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method='POST' >
 
                     <p><input type='text'  name='email'  placeholder="email"></p>
 
@@ -44,8 +49,8 @@ and open the template in the editor.
 
 
         <?php
-         include 'SignInBottom.php';
-        
+         include('SignInBottom.php');
+         
         ?>
 
 

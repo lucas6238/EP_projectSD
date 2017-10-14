@@ -7,7 +7,8 @@ DEBUG VERSION
 
 <?php
 
-include 'StartConnection.php';
+include ("../all/connectDatabase.php");
+include ("../all/helperfunctions.php");
 
 ?>
 
@@ -16,12 +17,12 @@ include 'StartConnection.php';
     <head>
         <title>Create Account</title>
         <meta charset="UTF-8">
-        <link  type="text/css" rel="stylesheet" href="w3.css">
+        <link  type="text/css" rel="stylesheet" href="../all/EP_CSS.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
-    <body class="w3-blue">
-        <div class=' w3-container w3-section w3-center'>
-            <div class ="w3-white w3-padding-large">
+    <body>
+        <div class='wrapper'>
+           
                 <form  method='POST' >
                 <h1> Create New Account </h1>
                     <p><input type='text'  name='fname'  placeholder="First Name"></p>
@@ -36,12 +37,12 @@ include 'StartConnection.php';
                     
   
                 </form>
-                </div>
+                
             
         </div>
         
         <?php
-        $emailSuccess =false;
+        
          
          
         //FIRST NAME
@@ -74,7 +75,7 @@ include 'StartConnection.php';
        
         
         
-        
+        $emailSuccess =false;
         
       //EMAIL_____________
         $filterEmail = filter_input(INPUT_POST, "email");
@@ -162,12 +163,15 @@ include 'StartConnection.php';
         
        // INSERTION INTO DATABASE
 if ($fnameSuccess && $lnameSuccess && $emailSuccess 
-        && $passwordSuccess && $keySuccess) {
-            $sqlInsert = "insert into UserAcc (fname,lname,email,hpassword) "
-                    . "Values ('$fname','$lname','$emailChecked', '$hpass')";
+       
+        && $passwordSuccess && $keySuccess) { 
+        $tempID= rand(100000,999999);
+            $sqlInsert = "INSERT into user "
+                    . "values ('$tempID','$fname','$lname','$hpass',"
+                    . "'$emailChecked')";
 
             if (mysqli_query($connection, $sqlInsert)) {
-                echo "Data inserted succssfully <br>";
+                console.log( "Data inserted succssfully <br>");
             } else {
                 echo "error: " . mysqli_error($connection);
             }

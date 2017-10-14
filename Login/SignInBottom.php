@@ -6,8 +6,8 @@
  * and open the template in the editor.
  */
 
-    $emailChecked = "";
 
+ $emailChecked = "";
 
         $oneEmail = filter_input(INPUT_POST, "email");
         $SignInEmailSuccess = false;
@@ -18,7 +18,7 @@
                 $emailChecked = $oneEmail;
                 if (ifEmailExists($emailChecked, $connection)) {
                     $SignInEmailSuccess = true;
-                    echo "User email Exists  <br>";
+                    echo "User email Exists hello <br>";
                 } else {
                     echo "Email does not exist <br>";
                     $allValid = false;
@@ -37,6 +37,9 @@
         if (isset($filterPass)) {
             $pass = $filterPass;
             
+            
+                echo $emailChecked . "<br>";
+                
                 if (ifPasswordMatches($emailChecked, $pass, $connection)) {
                     $SignInPasswordSuccess = true;
                 }
@@ -53,15 +56,25 @@
 
         if ($SignInEmailSuccess && $SignInPasswordSuccess) {
                 if (!session_id()){
-              session_start();
+              
                 }
+                $tempFName = printFName($emailChecked,$connection);
+                $tempLName = printLName($emailChecked,$connection);
+                
             $_SESSION['logon'] = true;
+           
+            setcookie("fname",$tempFName,time()+(6400 *30),"/");
+            setcookie('lname',$tempLName,time()+(6400 *30),"/");
+            
           
             $_POST["email"]="";
             $_POST["password"]="";
             header("Location: ../homePage.php");
             mysqli_close($connection);
             exit;
+        }
+        else{
+            session_destroy();
         }
 
         mysqli_close($connection);

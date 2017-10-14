@@ -15,7 +15,8 @@ and open the template in the editor.
 
         <?php
        
-        include 'StartConnection.php';
+        include ("../all/connectDatabase.php");
+        include ("../all/helperfunctions.php");
         ?>
 
         <div class=' w3-container w3-section w3-center'>

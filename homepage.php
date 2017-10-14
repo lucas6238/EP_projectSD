@@ -20,9 +20,16 @@ and open the template in the editor.
         <a href='QuestionSection/QuestionSelection.php'>Question</a>
         </nav>
         
-        <?php include("all/EP_Header.php");?>
-        <h3><?php echo "welcome USERNAME" ?></h3>
+        <?php
+        session_start();
+        include("all/EP_Header.php");
+        ?>
+        <h3>
+            Welcome <?php if(isset($_COOKIE['fname'])&& $_COOKIE['lname']){
+             echo ucFirst($_COOKIE['fname']) . " " . ucfirst($_COOKIE['lname']);}?> 
+        </h3>
        
+         
         
         <table>
             
@@ -45,7 +52,7 @@ and open the template in the editor.
              in CIS 1020 classes at Western Michigan University 
         </p>
         
-        <a href="logoff.php">Sign off</a>
+        <a href="Login/SignIn.php">Log off </a>
         <?php include("all/EP_Footer.php");?>
     </body>
 </html>
