@@ -80,7 +80,7 @@
  
         }
         function ifKeyMatches($key){
-            if(strcasecmp($key, 'chacon2017') == 0){
+            if(strcasecmp($key, 'cis2017') == 0){
                 return true;
             }
             else{

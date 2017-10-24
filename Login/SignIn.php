@@ -22,8 +22,8 @@ and open the template in the editor.
             testHashs();
         ?>
 
-        <div class=' w3-container w3-section w3-center'>
-            <div class = "w3-white w3-padding-large">
+        <div>
+            <div >
                 <h1 >Login</h1>
 
                 <form action="
