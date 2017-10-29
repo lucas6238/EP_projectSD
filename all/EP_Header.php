@@ -6,4 +6,4 @@
  * and open the template in the editor.
  */
 ?>
-<h1>Enterprise Project 4990</h1>
+<img src="all/wmu.png" width="10%" height="10%"><h1>Clicker-Viewer</h1>

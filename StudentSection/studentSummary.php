@@ -22,7 +22,7 @@
 
     include("../all/connectDatabase.php");
     
-    $table = "student";
+    $table = "ep_project.studentscores";
     
     $skip = true;
     
@@ -32,8 +32,7 @@
             
             break;
         case 1: echo"all";
-            $SQLString = "select * from $table where "
-            . "SID like '$studentID%'";
+            $SQLString = "SELECT * FROM ep_project.studentscores where date like '$dateID' and SID = '$studentID' and total !=0 order by date asc";
             break;
         case 2: echo"Date sess";
             $SQLString = "select * from $table where "
@@ -61,15 +60,20 @@
       
     $queryResult = mysqli_query($connection, $SQLString);
     if ($queryResult === FALSE) {
-//        echo "<p>Unable to execute the query.</p>"
-//        . "<p>Error code " . mysqli_errno($connection)
-//        . ": " . mysqli_error($connection) . "</p>";
+        echo "<p>Unable to execute the query.</p>"
+        . "<p>Error code " . mysqli_errno($connection)
+        . ": " . mysqli_error($connection) . "</p>";
     }
      
-    echo"<h2>Question Specific Results</h2>" .
-    "<table width='100%' border='1'>" .
-    "<tr><th>Student ID</th>" .
-    "<th>Session</th>";
+    echo"<h2>Student ". $studentID . " Specific Results</h2>" .
+    "<table width='50%' border='1'>" .
+    
+    "<th>Session</th>" .
+    "<th>Date</th>" .
+    "<th>Total</th>" .
+    
+    "tr>";
+    
 
 
     $i = 0;
@@ -79,8 +83,13 @@
     while ($row = mysqli_fetch_assoc($queryResult)) {
         
         // extract($row);
-        echo "<tr><td>" . $row["SID"] . "</td>\n";
-        echo "<td>" . $row["Session"] . "</td>\n";
+        echo "<tr><td>" . $row["Session"] . "</td>\n";
+        
+         echo "<td>" . $row["Date"] . "</td>\n";
+          echo "<td>" . $row["Total"] . "</td>\n";
+         
+          echo "</tr>\n";
+          
         
         "</table>\n";
         $i++;

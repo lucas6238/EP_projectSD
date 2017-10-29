@@ -40,7 +40,8 @@
     $studentComplete = false;
     
     $sessionID  = "Both";
-    $dateID = "";
+    $dateID = "0";
+    $dateDisplay = "";
     $DateComplete = false;
     $Qcomplete= false;
     $Scomplete =false;
@@ -78,17 +79,27 @@
              $Scomplete = true;
            // include("questionSummary.php");
         }
+        */
         //Date
         if(empty($_POST["dateID"])){
             $errDate = "Date is required";
            
         }
         else{
+             if(strcasecmp($_POST["dateID"], "All") == 0){
+            $dateID = "%";
+            $dateDisplay = "All";
+             $DateComplete = true;
+           
+            }
+            else{
             $dateID = $_POST["dateID"];
+            $dateDisplay = $dateID;
              $DateComplete = true;
            // include("questionSummary.php");
+            }
         }
-         * */
+         
          
     }
     
@@ -96,7 +107,7 @@
    
     <p>
         
-<h2>Question Data</h2>
+<h2>Student Data</h2>
 
 
 
@@ -105,19 +116,20 @@
        action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
 
     <table>
-        <!--
+        
         <tr>
                 <td>Date</td>
-                <td><select class="dropDown" name="dateID"
-                            >
-                        <option value="<?php echo$dateID?>">Last used:<?php echo $dateID?></option>
-                    <?php include("selectUniqueDates.php");?>       
+                <td><select class="dropDown" name="dateID">
+                        <option value="<?php echo$dateID?>">Last used:<?php echo $dateDisplay?></option>
+                        <option value="All">All</option>
+                    <?php include("../all/selectUniqueDates.php");?>       
                     </select>
                     
                 </td>
-                
+              
             </tr>
         
+            <!-- 
             <tr>
                 <td>Session</td>
                 <td><select class="dropDown" name="sessionID">

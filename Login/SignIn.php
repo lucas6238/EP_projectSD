@@ -14,42 +14,49 @@ and open the template in the editor.
     <body >
 
         <?php
-        
+        //include("../all/EP_Header.php");
         include ("../all/connectDatabase.php");
         include ("../all/helperfunctions.php");
         
         session_start();
             testHashs();
+            
         ?>
-
-        <div>
-            <div >
-                <h1 >Login</h1>
+        <div class="outsideWrapper">
+        <div class="wrapper">
+            <div class="fwrapper" >
+                <img class="splashIMG" src="../all/wmu.png" >
+                <h2 class="splshText">Login to Clicker Data Viewer</h2>
 
                 <form action="
-                      <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method='POST' >
+                      <?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method='POST' id="formSelf" >
 
                     <p><input type='text'  name='email'  placeholder="email"></p>
 
                     <p> <input type='password'  name='password' placeholder="password"></p>
 
-                    <p> <input type="submit" name = "submit" value="Login" ></p>
-
+                    
+                    
+                </form>
+                <form action="NewUser.php" id="formNewUser">
+                    
+                   
                 </form>
 
 
-
+                <table class="buttonTable">
+                    <td><button class="button1" form="formSelf" width="100%" type="submit" name = "submit" value="Login" >Login</button></td>
+                    <td><button class="button1" form="formNewUser" type="submit" value="New User">New User</button></td>
+                </table>
             </div>
-            <div>
-                <h4>Don't have an account</h4>
-                <a href='NewUser.php'>Click here to create a new account</a>
-            </div>
+        </div>
         </div>
 
 
-
         <?php
-         include('SignInBottom.php');
+        include('SignInBottom.php');
+        include("../all/EP_Footer.php");
+         
          
         ?>
 

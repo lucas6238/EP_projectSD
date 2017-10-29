@@ -21,19 +21,21 @@
  */
 ?>
 
-<body class="wrapper">
- <nav>
-        <a href='../homepage.php'>Home</a>
-        <a href='../StudentSection/studentSelection.php'>Student</a>
-        <a href='../QuestionSection/QuestionSelection.php'>Question</a>
+<body>
+    <?php //include("../all/EP_Header.php"); ?>
+ <ul>
+     <li><a href='../homepage.php'>Home</a></li>
+     <li><a href='../StudentSection/studentSelection.php'>Student</a></li>
+     <li><a href='../QuestionSection/QuestionSelection.php'>Question</a></li>
          
-    </nav>
+ </ul>
+    
     <?php
     session_start();
    // error_reporting(0);
 //this line of php code refences another php file that will run at this point in the program
 //since it switches to the php file the
-    include("../all/EP_Header.php");
+    
     $questionID  = "";
     $sessionID  = "";
     $dateID = "";
@@ -89,7 +91,7 @@
     ?>
    
    
-        
+    <div class="outsideWrapper">      
 <h2>Question Data</h2>
 
 
@@ -104,7 +106,7 @@
                 <td><select class="dropDown" name="dateID"
                             >
                         <option value="<?php echo$dateID?>">Last used:<?php echo $dateID?></option>
-                    <?php include("selectUniqueDates.php");?>       
+                    <?php include("../all/selectUniqueDates.php");?>       
                     </select>
                     
                 </td>
@@ -191,13 +193,16 @@
                 
 //here at the end, another file is refeneced that will execute at this point in the file 
 //as if it had been written here.
-                include("../all/EP_Footer.php");
+                
                 session_destroy();
                 ?> 
+                </div>
+                <?php
+                include("../all/EP_Footer.php"); 
+                ?>
 
 
 
-
-
+                
                 </body>
                 </html>

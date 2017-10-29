@@ -73,7 +73,8 @@
     "<th>Question</th>" .
     "<th>Number of Responses</th>" .
     "<th>Average Points Scored</th>" .
-    "<th>Percentage of Correct Responses</th>";
+    "<th>Percentage of Correct Responses</th>" .
+     "<th>Students that missed this Question</th>";
 
 
     $i = 0;
@@ -95,6 +96,7 @@
         }
         
         echo "<td>" . ($row["AveragePercentage"] *100) . "%</td>\n";
+        echo "<td><a href=\"SIDmissed.php\">Link </a></td>\n";
       
         "\">Update</a></td></tr>\n" .
         "</table>\n";

@@ -14,16 +14,19 @@ and open the template in the editor.
     <body>
         
         
-         <nav>
-        <a href='homepage.php'>Home</a>
-        <a href='StudentSection/studentSelection.php'>Student</a>
-        <a href='QuestionSection/QuestionSelection.php'>Question</a>
-        </nav>
+          <ul>
+     <li><a href='../homepage.php'>Home</a></li>
+     <li><a href='../StudentSection/studentSelection.php'>Student</a></li>
+     <li><a href='../QuestionSection/QuestionSelection.php'>Question</a></li>
+         
+    </ul>
+        
         
         <?php
         session_start();
         include("all/EP_Header.php");
         ?>
+        <div class="outsideWrapper">
         <h3>
             Welcome <?php if(isset($_COOKIE['fname'])&& $_COOKIE['lname']){
              echo ucFirst($_COOKIE['fname']) . " " . ucfirst($_COOKIE['lname']);}?> 
@@ -53,6 +56,7 @@ and open the template in the editor.
         </p>
         
         <a href="Login/SignIn.php">Log off </a>
+        </div>
         <?php include("all/EP_Footer.php");?>
     </body>
 </html>

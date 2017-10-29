@@ -8,7 +8,7 @@
 
 include("../all/connectDatabase.php");
 
-$table = "questionData";
+$table = "date";
 
 $SQLString = "select Distinct date from $table order by date asc";
 
