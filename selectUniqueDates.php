@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-include("../all/connectDatabase.php");
+include("connectDatabase.php");
 
 $table = "date";
 

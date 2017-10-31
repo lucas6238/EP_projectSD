@@ -1,0 +1,202 @@
+body{
+    font-family: helvetica;
+    background-color:#4E2511
+}
+
+.splashIMG {
+    display: block;
+    margin: auto;
+    width: 40%;
+    height:300px;
+    width:300px;
+    
+    
+}
+.homepageWrapper{
+    
+}
+.outsideWrapper{
+    padding:20px;
+      background-color: white; 
+    
+}
+.container{
+    background-color:white;
+    width:100%;
+     margin-left:auto;
+    margin-right:auto;
+    padding:30px;
+}
+.center{
+  
+   width:300px;
+   margin-left:auto;
+    margin-right:auto;
+   
+}
+#outwrap{
+    display:grid;
+    grid-template-rows: 
+        .05fr
+        1fr
+        ;
+    
+     grid-template-areas:
+         "top"
+         "middle"
+         "bottom";
+}
+#top{
+    grid-area:top;
+   
+}
+#bottom{
+    grid-area:bottom;
+}
+
+#NewUserGrid{
+    grid-area:middle;
+    background-color: white; 
+    display:grid;
+    width:100%;
+    height:100%;
+    grid-gap:5px;
+    grid-template-areas:
+        ". . .  .  "
+        ". NUI   NUHeader .  "
+        ". NUI  NUForm . "
+        
+        ". NUI  NUButtons .";
+       
+    grid-template-rows:
+        .2fr 
+        .4fr 
+        
+        2fr 
+       
+        .2fr
+    1fr;
+    grid-template-columns:1fr  .1fr 1.2fr  1fr;
+}
+
+#NewUserGrid > #NUI{
+    padding:10px;
+    grid-area:NUI;
+    background-color:white;
+}
+#NewUserGrid > #NUHeader{
+    font-size:1.3em;
+    color: #111;
+    grid-area:NUHeader;
+    //background-color:goldenrod;
+}
+#NewUserGrid > #NUForm{
+    padding: 10px;
+    grid-area:NUForm;
+   // background-color:goldenrod;
+}
+#NewUserGrid > #NUButtons{
+    padding:10px;
+    grid-area:NUButtons;
+   // background-color:goldenrod;
+}
+.formCenter{
+    width:20px;
+    display:inline-block;
+    text-align: center;
+   
+/*     width:300px;
+    margin-left:auto;
+    margin-right:auto;
+    */
+}
+
+td{
+/*    color:blue;
+    background-color:grey;
+    */
+    padding:10px;
+
+    text-align:center;
+}
+.ft{
+    /* it likes this comment*/
+    background-color:#4E2511;
+    padding: 20px;
+    color:white;
+    text-align:left;
+}
+.error{
+    color:red;
+}
+.badScore{
+    background-color:red;
+    
+}
+.goodScore{
+    background-color:green;
+}
+.dropDown{
+    width:100%;
+    text-align: center;
+    
+}
+
+.splshText{
+    color:#4E2511;
+    text-align:center;
+}
+.button1:hover{
+    background-color: cadetblue;
+}
+.button1{
+    border-style: none;
+    text-decoration:window;
+    font-size: 1.05em;
+    border-radius: 25px;
+    width:100px;
+    padding:10px;
+    background-color:grey;
+}
+.buttonTable{
+    width:100%;
+}
+
+ul{ 
+    list-style-type: none;
+  
+    margin:0;
+   
+    padding: 0;
+    overflow: hidden;
+    background-color: goldenrod;
+}
+li {
+    float: left;
+}
+.fancyLink:hover{
+    background-color:black;
+}
+.fancyLink{
+    text-decoration: none;
+    background-color: goldenrod;
+    padding:20px;
+    color:white;
+    
+    
+}
+td{
+    text-decoration: none;
+    color:black;
+}
+
+li a {
+   display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+li a:hover {
+    background-color: #111;
+}

@@ -20,7 +20,7 @@
 
  
 
-    include("../all/connectDatabase.php");
+    include("connectDatabase.php");
 
     $table = "questionData";
     

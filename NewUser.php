@@ -7,8 +7,8 @@ DEBUG VERSION
 
 <?php
 
-include ("../all/connectDatabase.php");
-include ("../all/helperfunctions.php");
+include ("connectDatabase.php");
+include ("helperfunctions.php");
 
 ?>
 
@@ -17,29 +17,69 @@ include ("../all/helperfunctions.php");
     <head>
         <title>Create Account</title>
         <meta charset="UTF-8">
-        <link  type="text/css" rel="stylesheet" href="../all/EP_CSS.css">
+        <link  type="text/css" rel="stylesheet" href="EP_CSS.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        <div class='wrapper'>
-           
-                <form  method='POST' >
-                <h1> Create New Account </h1>
-                    <p><input type='text'  name='fname'  placeholder="First Name"></p>
-                    <p><input type='text'  name='lname'  placeholder="Last Name"></p>
-                    <p><input type='text'  name='email'  placeholder="email"></p>
-                    <p><input type='text'  name='email2'  placeholder="re-enter email"></p>
-                    <p><input type='password'  name='password'  placeholder="password"></p> 
-                     <p><input type='password'  name='password2'  placeholder="re-enter password"></p> 
-                     <p><input type='text'  name='key'  placeholder="Key"></p> 
-                    <p> <input type="submit" name = "submit" value="Create Account" ></p>
-                    
-                    
-  
-                </form>
+        
+        <div id="outwrap">
+        <div id="NewUserGrid">
+        <div id="NUI"><img src="wmu.png" width="200px" height="200px"></div>
+        <div id="NUHeader" style="text-align:  center;"><h1> Create New Account </h1></div>
+            <div id="NUForm">
+                <form  method='POST' id="createAccount">
                 
-            
+                <table>
+                    <tr>
+                        <td style="float:left;">First Name</td>
+                        <td><input type='text'  name='fname'  placeholder="First Name"></td>
+                    </tr>
+                    
+                     <tr>
+                        <td style="float:left;">Last Name</td>
+                        <td><input type='text'  name='lname'  placeholder="Last Name"></td>
+                    </tr>
+                    <tr>
+                        <td style="float:left;">Email</td>
+                        <td><input type='text'  name='email'  placeholder="email"></td>
+                    </tr>
+                    <tr>
+                        <td style="float:left;">Re-Enter Email</td>
+                        <td><input type='text'  name='email2'  placeholder="re-enter email"></td>
+                    </tr>
+                    <tr>
+                        <td style="float:left;">Password</td>
+                        <td><input type='password'  name='password'  placeholder="password"></td>
+                    </tr>
+                    <tr>
+                        <td style="float:left;">Re-Enter Password</td>
+                        <td><input type='password'  name='password2'  placeholder="re-enter password"></td>
+                    </tr>
+                    <tr>
+                        <td style="float:left;">Key</td>
+                        <td><input type='text'  name='key'  placeholder="key"></td>
+                    </tr>
+                    
+                        
+                </table>
+                </form>
+            </div>
+            <form action="SignIn.php" id="return"></form>
+                
+            <div id="NUButtons">
+             <table class="buttonTable">
+                 <td></td>
+                 <td></td>
+                    <td><button class="button1" form="createAccount" width="100%" type="submit" name = "submit" value="Submit" >Submit</button></td>
+                    <td><button  class="button1" form="return">Return</button></td>
+                    <td></td>
+                    <td></td>
+                </table>
+            </div>
         </div>
+    </div>
+            
+        
         
         <?php
         
@@ -132,9 +172,10 @@ include ("../all/helperfunctions.php");
             $pass2 = $filterPassword2;
             
             if(ifFieldsMatch($pass1,$pass2)){
-                $passwordSuccess = true;
+               
                 echo "passwords match <br>";
-               $hpass = password_hash($filterPassword, PASSWORD_BCRYPT);  
+               $hpass = password_hash($filterPassword, PASSWORD_BCRYPT); 
+               $passwordSuccess = true;
             }
             else{
                 echo "passwords dont match! <br>";

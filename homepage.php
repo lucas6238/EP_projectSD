@@ -14,19 +14,20 @@ and open the template in the editor.
     <body>
         
         
-          <ul>
-     <li><a href='../homepage.php'>Home</a></li>
-     <li><a href='../StudentSection/studentSelection.php'>Student</a></li>
-     <li><a href='../QuestionSection/QuestionSelection.php'>Question</a></li>
-         
-    </ul>
+    
         
         
         <?php
+        include("EP_Header.php");
         session_start();
-        include("all/EP_Header.php");
         ?>
+        
         <div class="outsideWrapper">
+            <h1 class="header"><img src="hcob2.jpg" width="20%" height="20%">Clicker-Viewer</h1>
+            <?php
+        
+        ?>
+            <div class="homepageWrapper">
         <h3>
             Welcome <?php if(isset($_COOKIE['fname'])&& $_COOKIE['lname']){
              echo ucFirst($_COOKIE['fname']) . " " . ucfirst($_COOKIE['lname']);}?> 
@@ -38,13 +39,13 @@ and open the template in the editor.
             
             <tr>
                 <td>
-                  <a href="QuestionSection/questionSelection.php">Question Selection</a>  
+                  <a class="fancyLink" href="questionSelection.php">Question Selection</a>  
                 </td>
                 
-            </tr>
-            <tr>
+            
+            
                 <td>
-                   <a href="StudentSection/studentSelection.php">Student Selection</a>  
+                   <a class="fancyLink" href="studentSelection.php">Student Selection</a>  
                 </td>
                 
             </tr>
@@ -54,9 +55,10 @@ and open the template in the editor.
             this project is a web viewer for clicker data captured <br>
              in CIS 1020 classes at Western Michigan University 
         </p>
+            </div>
         
-        <a href="Login/SignIn.php">Log off </a>
+        
         </div>
-        <?php include("all/EP_Footer.php");?>
+        <?php include("EP_Footer.php");?>
     </body>
 </html>

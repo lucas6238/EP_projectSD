@@ -23,7 +23,7 @@ $jsonArray = array();
 
 
 
-include("all/connectDatabase.php");
+include("connectDatabase.php");
 $table= "questionData";
 $SQLString = "select * from $table";
  $queryResult = mysqli_query($connection, $SQLString);
