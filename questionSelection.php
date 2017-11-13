@@ -105,7 +105,7 @@
                     </select>
                     
                 </td>
-                <td><span class="error"><?php echo $errDate?></span></td>
+                <!--<td><span class="error"><?php echo $errDate?></span></td>-->
                 
             </tr>
         
@@ -152,10 +152,29 @@
              
          </table>
           
-         </form>       
+         </form> 
+            
+            
+            <!--10AM session when both are rendered -->
+            <div id="PQ-chart-2" style="display:inline"><!-- Fusion Charts will render here--></div>
+            <!--11AM POINTS session when both are rendered -->
+            <div id="PQ-chart-1" style="display:inline"> <!-- Fusion Charts will render here--></div>
+            
+            
+            <!-- 10 AM  RESPONSE session when one is rendered -->    
+            <div id="RQ-chart-2" style="display:inline"><!-- Fusion Charts will render here--></div>
+            <!-- 11AM BOTH RESPONSE session when one is rendered -->
+            <div id="RQ-chart-1" style="display:inline"> <!-- Fusion Charts will render here--></div>
+            
                 
+            <!--Individual POINTS session when one is rendered -->
+            <div id="PQ-chart-3" style="display:inline"><!-- Fusion Charts will render here--></div>
+            <!--Individual RESPONSES session when one is rendered -->
+            <div id="RQ-chart-3" style="display:inline"><!-- Fusion Charts will render here--></div>
                 
-
+            <!--Questions Percentage PIE CHART session when one is rendered -->
+            <div id="PerQ-chart-1" style="display:inline"><!-- Fusion Charts will render here--></div>
+            
 
 
 
@@ -191,7 +210,9 @@
                 
                 session_destroy();
                 ?> 
+            
                 </div>
+   
                 <?php
                 include("EP_Footer.php"); 
                 ?>

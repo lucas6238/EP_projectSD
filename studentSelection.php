@@ -26,7 +26,7 @@
      <li><a href='homepage.php'>Home</a></li>
      <li><a href='studentSelection.php'>Student</a></li>
      <li><a href='QuestionSelection.php'>Question</a></li>
-      <li style="float:right;"><a href="SignIn.php">Log off </a></li>    
+     <li style="float:right;"><a href="SignIn.php">Log off </a></li>    
     </ul>
     <?php
     session_start();
@@ -117,7 +117,7 @@
 
     <table>
         
-        <tr>
+       <!-- <tr>
                 <td>Date</td>
                 <td><select class="dropDown" name="dateID">
                         <option value="<?php echo$dateID?>">Last used:<?php echo $dateDisplay?></option>
@@ -127,66 +127,21 @@
                     
                 </td>
               
-            </tr>
+            </tr>-->
         
-            <!-- 
-            <tr>
-                <td>Session</td>
-                <td><select class="dropDown" name="sessionID">
-                             
-                        
-                        <option value="<?php echo$sessionDisplay?>">Last used:<?php echo $sessionDisplay?></option>
-                        <option value="Both">Both</option>
-                        <option value="10AM">10AM</option>
-                        <option value="11AM">11AM</option>
-                    </select>
-                    
-                </td>
-                
-            </tr>
-        
-             <tr>
-                <td>Question</td>
-                <td><select class="dropDown" name="questionID">
-                        <option value="<?php echo$questionDisplay?>">Last used:<?php echo $questionDisplay?></option>
-                        <option value="0">All</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                        <option value="9">9</option>
-                        <option value="10">10</option>
-                    </select>
-                    
-                </td>
-                
-            </tr>
-        -->
-            <tr>
+         <tr>
                 <td>Student</td>
-                <td><input type="text" name="studentID" 
-                           value="<?php echo $studentDisplay?>"/></td>
-                <td><span class="error"> <?php echo $errStudent?></span></td>
-            </tr>
-        <!--
-            <tr>
-                <td>Session</td>
-                <td><input type="text" name="sessionID" 
-                           value="<?php echo $sessionID?>"/></td>
-                <td><span class="error"> <?php echo $errSessID?></span></td>
+                <td><select class="dropDown" name="studentID">
+                        <option value="<?php echo$studentID?>">Last used:<?php echo $studentDisplay?></option>
+                        
+                    <?php include("selectUniqueStudents.php");?>       
+                    </select>
+                    
+                </td>
+              
             </tr>
         
-        <tr>
-                <td>Question</td>
-                <td><input type="text" name="questionID" 
-                           value="<?php echo $questionID?>"/></td>
-                <td><span class="error"> <?php echo $errQID?></span></td>
-            </tr>
-        -->
+      
             <tr>
                 <td></td>
                 <td> <input style="width:100%;" type="submit" name="submitQuestion" value="Submit"/> </td> 
@@ -195,7 +150,9 @@
          </table>
           
          </form>       
-                
+            <div id="DatesTotal-chart-1"></div>
+            <div id="DatesTotal-chart-2"></div>
+            <div id="DatesTotal-chart-3"></div>
                 
 
 
@@ -206,30 +163,9 @@
                 if($studentComplete){
                     $_SESSION['Spick'] = 1;
                 }
-                /*
-                if($Qcomplete && $Scomplete && $DateComplete){
-                $_SESSION['Qpick']=1;
-                    //all three
                 
-                }
-                //Date Session
-                if($DateComplete && $Scomplete && !$Qcomplete){
-                    $_SESSION['Qpick']=2;
-                    //run specific query
-                }
-                //Date Question
-                if($DateComplete && $Qcomplete && !$Scomplete){
-                    $_SESSION['Qpick']=3;
-                   
-                }
-                //Date
-                if($DateComplete && !$Qcomplete && !$Scomplete){
-                    $_SESSION['Qpick']=4;
-                    
-                }
-                 * */
                  
-                
+             
                 include("studentSummary.php");
                
                 

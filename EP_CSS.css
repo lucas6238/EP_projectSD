@@ -12,6 +12,19 @@ body{
     
     
 }
+table, td, th {    
+    border: 1px solid #ddd;
+   
+}
+
+table {
+    border-collapse: collapse;
+   
+}
+
+th, td {
+    padding: 15px;
+}
 .homepageWrapper{
     
 }
@@ -88,17 +101,17 @@ body{
     font-size:1.3em;
     color: #111;
     grid-area:NUHeader;
-    //background-color:goldenrod;
+    
 }
 #NewUserGrid > #NUForm{
     padding: 10px;
     grid-area:NUForm;
-   // background-color:goldenrod;
+   
 }
 #NewUserGrid > #NUButtons{
     padding:10px;
     grid-area:NUButtons;
-   // background-color:goldenrod;
+ 
 }
 .formCenter{
     width:20px;
@@ -130,11 +143,18 @@ td{
     color:red;
 }
 .badScore{
-    background-color:red;
+    background-color:#ff3333;
     
 }
 .goodScore{
-    background-color:green;
+    background-color:#66ff66;
+}
+.mScore{
+    background-color:#ffff66;
+}
+
+.elevenAM{
+    background-color:lightgoldenrodyellow;
 }
 .dropDown{
     width:100%;
