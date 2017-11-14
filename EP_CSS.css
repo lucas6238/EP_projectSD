@@ -1,6 +1,7 @@
 body{
     font-family: helvetica;
     background-color:#4E2511
+    /*background-color:white;*/
 }
 
 .splashIMG {
@@ -13,13 +14,15 @@ body{
     
 }
 table, td, th {    
-    border: 1px solid #ddd;
+    
+    
    
 }
 
-table {
+.tableBorder {
     border-collapse: collapse;
-   
+   margin-bottom:5px;
+   border: 1px solid #ddd;
 }
 
 th, td {
@@ -32,6 +35,31 @@ th, td {
     padding:20px;
       background-color: white; 
     
+}
+.studentWrapper{
+     background-color: white; 
+   display:grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   grid-template-areas:
+       " . swR swL .";
+}
+.swR{
+    width:600px;
+      padding:20px;
+      
+      background-color: white; 
+    gridArea:swR;
+}
+.swL{
+    margin-left:50px;
+    margin-right:50px;
+    
+    
+    width:600px;
+    float:right;
+      padding:20px;
+     
+    gridArea:swL;
 }
 .container{
     background-color:white;

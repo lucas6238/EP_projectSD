@@ -28,26 +28,26 @@ $table = "questionData";
 $processQuery = true;
 
 switch ($_SESSION['Qpick']) {
-    case 0: echo"nothing";
+    case 0: //echo"nothing";
         $processQuery = false;
         break;
-    case 1: echo"all";
+    case 1:// echo"all";
         $SQLString = "select * from $table where "
                 . "Question = $questionID "
                 . "and Date = '$dateID'"
                 . "and Session = '$sessionID'";
         break;
-    case 2: echo"Date sess";
+    case 2: //echo"Date sess";
         $SQLString = "select * from $table where "
                 . " Date = '$dateID'"
                 . "and Session = '$sessionID'";
         break;
-    case 3: echo"date question";
+    case 3: //echo"date question";
         $SQLString = "select * from $table where "
                 . "Question = $questionID "
                 . "and Date = '$dateID'";
         break;
-    case 4: echo"date only";
+    case 4: //echo"date only";
         $SQLString = "select * from $table where "
                 . "Date = '$dateID' order by question, session asc";
 
@@ -56,7 +56,7 @@ switch ($_SESSION['Qpick']) {
 
 
 if ($processQuery) {
-    echo $SQLString;
+    //echo $SQLString;
 
     $queryResult = mysqli_query($connection, $SQLString);
     if ($queryResult === FALSE) {
@@ -66,7 +66,7 @@ if ($processQuery) {
     }
 
     echo"<h2>Question Specific Results</h2>" .
-    "<table width='100%' border='1'>" .
+    "<table width='100%' border='1'class=\"tableBorder\">" .
     "<tr><th>Session</th>" .
     "<th>Date</th>" .
     "<th>Question</th>" .
@@ -76,9 +76,10 @@ if ($processQuery) {
     "<th>Students that missed this Question</th>";
 
 
-    $i = 0;
+   
     while ($row = mysqli_fetch_assoc($queryResult)) {
-
+        $passDate =$row["Date"];
+        $passQuestion = $row["Question"];
         // extract($row);
         if(strcasecmp($row["Session"], "11AM")){
             echo"<tr class=\"elevenAM\">";
@@ -101,13 +102,13 @@ if ($processQuery) {
         }
 
         echo "<td>" . ($row["AveragePercentage"] * 100) . "%</td>\n";
-        echo "<td><a href=\"SIDmissed.php\">Link </a></td>\n";
+        echo "<td><a href=\"StudentMissedQuestion.php?dataDate=$passDate & dataQuestion=$passQuestion\">Link </a></td>\n";
 
         "\">Update</a></td></tr>\n" .
                 "</table>\n";
-        $i++;
+        
     }
-    echo "times ran " . $i;
+   
     mysqli_free_result($queryResult);
     echo "</table>\n";
 }
@@ -121,7 +122,7 @@ $SQLString11AM = "select Question,AveragePoints,AveragePercentage, Responses fro
 //caption chartID label value table date session
 //QUESTION AVERAGE POINTS SECTION
 if (empty($sessionID)) {
-    echo "render both graphs";
+    //echoecho "render both graphs";
     
     MakeBarChart("Column2D","Average Points for $dateID Session 11AM", "Graph10", "PQ-chart-1", "Question", "AveragePoints",$SQLString10AM);
     
@@ -134,7 +135,7 @@ if (empty($sessionID)) {
  //PERCENTAGE SECTION
 
 if (empty($sessionID)) {
-    echo "render both graphs";
+    //echo "render both graphs";
     MakeBarChart("line","Responses Per Question for $dateID Session 11AM", "Graph40", "RQ-chart-1", "Question", "Responses",$SQLString10AM);
 
     MakeBarChart("line","Responses Per Question for $dateID Session 10AM", "Graph50", "RQ-chart-2", "Question", "Responses",$SQLString11AM);

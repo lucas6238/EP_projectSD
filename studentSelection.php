@@ -29,12 +29,19 @@
      <li style="float:right;"><a href="SignIn.php">Log off </a></li>    
     </ul>
     <?php
-    session_start();
     
-//this line of php code refences another php file that will run at this point in the program
+    include('CreateGraph.php');
+    include('connectDatabase.php');
+    ////this line of php code refences another php file that will run at this point in the program
 //since it switches to the php file the
     //include("../all/EP_Header.php");
-    $studentID  = "0";
+    if(isset($studentID)){
+        
+    }
+    else{
+       $studentID  = "0";  
+    }
+   
     $studentDisplay="";
     $errStudent="";
     $studentComplete = false;
@@ -47,57 +54,31 @@
     $Scomplete =false;
     $sessionDisplay="";
     $questionDisplay="";
-    $_SESSION['Spick'] =0;
+   // $_SESSION['Spick'] =0;
     
     if($_SERVER["REQUEST_METHOD"]=="POST"){
         //Student
         if($_POST["studentID"] == 0){
             $errStudent="Student Does not exist";
-           // $errQID = "QuestionID is not required";
-           
-           
+           // $errQID = "QuestionID is not required";  
         }
-        
         else{
             $studentID = $_POST["studentID"];
             $studentDisplay=$studentID;
              $studentComplete = true;
-           // include("questionSummary.php");
+          
         }
-        /*
-         //Session
-        if(strcasecmp($_POST["sessionID"], "Both") == 0){
-            $sessionID = "";
-            $sessionDisplay = "Both";
-           
-           
-        }
-        else{
-            
-            $sessionID = $_POST["sessionID"];
-            $sessionDisplay = $sessionID;
-             $Scomplete = true;
-           // include("questionSummary.php");
-        }
-        */
-        //Date
+        
         if(empty($_POST["dateID"])){
-            $errDate = "Date is required";
+            $errDate = "Date is not required";
            
-        }
-        else{
-             if(strcasecmp($_POST["dateID"], "All") == 0){
-            $dateID = "%";
-            $dateDisplay = "All";
-             $DateComplete = true;
-           
-            }
+        }  
             else{
             $dateID = $_POST["dateID"];
             $dateDisplay = $dateID;
              $DateComplete = true;
-           // include("questionSummary.php");
-            }
+           
+            
         }
          
          
@@ -106,7 +87,8 @@
     ?>
    
     
-    <div class="outsideWrapper">    
+    <div class="studentWrapper">
+        <div class="swL">
 <h2>Student Data</h2>
 
 
@@ -130,7 +112,7 @@
             </tr>-->
         
          <tr>
-                <td>Student</td>
+                <td>Student Overall Summary</td>
                 <td><select class="dropDown" name="studentID">
                         <option value="<?php echo$studentID?>">Last used:<?php echo $studentDisplay?></option>
                         
@@ -140,6 +122,18 @@
                 </td>
               
             </tr>
+        <tr>
+                <td>Date</td>
+                <td><select class="dropDown" name="dateID">
+                        <option value="<?php echo$dateID?>">Last used:<?php echo $dateDisplay?></option>
+                        
+                    <?php include("selectUniqueDates.php");?>       
+                    </select>
+                    
+                </td>
+              
+            </tr>
+        
         
       
             <tr>
@@ -160,12 +154,6 @@
 
                 <?php
                 //Date Session Question
-                if($studentComplete){
-                    $_SESSION['Spick'] = 1;
-                }
-                
-                 
-             
                 include("studentSummary.php");
                
                 
@@ -174,9 +162,29 @@
 //as if it had been written here.
                 ?>
                 </div>
+    <div class="swR">
+        <h1>Student Specific Date</h1>
+       
+        <?php
+        
+            include('StudentQuestionSummary.php');
+            
+        ?>
+    </div>
+    </div>
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
                 <?php
                 include("EP_Footer.php");
-                session_destroy();
+                
                 ?> 
 
 

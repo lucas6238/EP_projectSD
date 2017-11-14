@@ -26,7 +26,7 @@
  
     
     <?php
-    session_start();
+   
    // error_reporting(0);
 //this line of php code refences another php file that will run at this point in the program
 //since it switches to the php file the
@@ -154,7 +154,7 @@
           
          </form> 
             
-            
+            <h2>Graphs for Overall Question Data For Selected Date</h2>
             <!--10AM session when both are rendered -->
             <div id="PQ-chart-2" style="display:inline"><!-- Fusion Charts will render here--></div>
             <!--11AM POINTS session when both are rendered -->
@@ -208,7 +208,7 @@
 //here at the end, another file is refeneced that will execute at this point in the file 
 //as if it had been written here.
                 
-                session_destroy();
+               
                 ?> 
             
                 </div>

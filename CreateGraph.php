@@ -126,7 +126,7 @@ include("js/fusioncharts.php");
             $SQLString = "SELECT studentscores.Total, date.QuestionAmount,date.ActDate, studentscores.SID, date.ActDate FROM `date`,`studentscores` 
             where date.ActDate=studentscores.ActDate and studentscores.SID='$studentID' order by date.ActDate";
             $queryResult = mysqli_query($_SESSION["connection"], $SQLString);
-            $SQLString2= "Select ActDate from date";
+            $SQLString2 = "Select ActDate from date";
             $queryResult2 = mysqli_query($_SESSION["connection"], $SQLString2);
 
 
@@ -143,47 +143,45 @@ include("js/fusioncharts.php");
                 $safety = 0;
                 $arrData["data"] = array();
                 while ($row = mysqli_fetch_assoc($queryResult)) {
-                    
+
                     if ($row["Total"] != 0) {
                         array_push($arrData["data"], array(
                             "label" => $row["ActDate"],
-                            "value" => ($row["Total"] / ($row["QuestionAmount"] * 2)),
+                            "value" => round(($row["Total"] / ($row["QuestionAmount"] * 2)), 2) * 100
                         ));
                     }
                 }
                 // echo count($arrData["data"]);
                 $count = 0;
-                
-                  while ($row2 = mysqli_fetch_assoc($queryResult2)) {
-                      $dateFlag = false;
-                    for($x = 0; $x <count($arrData["data"]); $x++) {
-                        if(strcasecmp($row2["ActDate"], $arrData["data"][$x]["label"]) == 0){ 
+
+                while ($row2 = mysqli_fetch_assoc($queryResult2)) {
+                    $dateFlag = false;
+                    for ($x = 0; $x < count($arrData["data"]); $x++) {
+                        if (strcasecmp($row2["ActDate"], $arrData["data"][$x]["label"]) == 0) {
                             // echo " ".$row2["ActDate"] . " " . $arrData["data"][$x]["label"] ;
-                             //echo "<br>";
+                            //echo "<br>";
                             $dateFlag = true;
                         }
-                        
-                        
                     }
-                    if(!$dateFlag){
-                           // echo "  flag thrown ".$row2["ActDate"] ;
-                           // echo "<br>";
-                       //can i put the insert here
-                            array_push($arrData["data"], array(
+                    if (!$dateFlag) {
+                        // echo "  flag thrown ".$row2["ActDate"] ;
+                        // echo "<br>";
+                        //can i put the insert here
+                        array_push($arrData["data"], array(
                             "label" => $row2["ActDate"],
                             "value" => (0),
                         ));
-                        }
-                  }
-                 foreach ($arrData["data"] as $key => $row) {
-        $label[$key]  = $row['label'];
-        $value[$key] = $row['value'];
-}
+                    }
+                }
+                foreach ($arrData["data"] as $key => $row) {
+                    $label[$key] = $row['label'];
+                    $value[$key] = $row['value'];
+                }
 
-// Sort the data with volume descending, edition ascending
-// Add $data as the last parameter, to sort by the common key
-array_multisort($label, SORT_ASC, $value, SORT_ASC, $arrData["data"]);
-                
+                // Sort the data with volume descending, edition ascending
+                // Add $data as the last parameter, to sort by the common key
+                array_multisort($label, SORT_ASC, $value, SORT_ASC, $arrData["data"]);
+
 
 
 
