@@ -6,19 +6,25 @@
  * and open the template in the editor.
  */
 
-
+setcookie("logon",false,time()+(6400 *30),"/");
  $emailChecked = "";
  
         $oneEmail = filter_input(INPUT_POST, "email");
         $SignInEmailSuccess = false;
+        if(empty($oneEmail)){
+            echo "email is empty<br>";
+        }
+        else{
         if (isset($oneEmail)) {
             
             if (isValidEmail($oneEmail)) {
 
                 $emailChecked = $oneEmail;
                 if (ifEmailExists($emailChecked, $connection)) {
+                    $tempEmail = $oneEmail;
                     $SignInEmailSuccess = true;
-                    echo "User email Exists hello <br>";
+                    echo "User email $tempEmail exists  <br>";
+                    $tempEmail = "";
                 } else {
                     echo "Email does not exist <br>";
                     $allValid = false;
@@ -27,23 +33,25 @@
                     //make a red dot a writing next to the email field
                 }
             } else {
-                echo "email not valid";
+                echo "email not valid<br>";
             }
         }
+        }
+        $SignInPasswordSuccess = false;
         if(empty(filter_input(INPUT_POST,"password"))){
-            echo "password empty1";
+            echo "password empty <br>";
         }
         else{
             $filterPass = filter_input(INPUT_POST,"password");
-        }
         
         
-        $SignInPasswordSuccess = false;
+        
+        
         if (isset($filterPass)) {
             $pass = $filterPass;
             
             
-                echo $emailChecked . "<br>";
+                //echo $emailChecked . "<br>";
                 
                 if (ifPasswordMatches($emailChecked, $pass, $connection)) {
                     $SignInPasswordSuccess = true;
@@ -53,11 +61,12 @@
                 $allValid =false;
                 }
             } else {
-                echo " <br> password is empty <br>";
+                echo "password is empty <br>";
                 $allValid = false;
             
         }
-
+        }
+        $logonSuccess=false;
 
         if ($SignInEmailSuccess && $SignInPasswordSuccess) {
                 if (!session_id()){
@@ -66,8 +75,8 @@
                 $tempFName = printFName($emailChecked,$connection);
                 $tempLName = printLName($emailChecked,$connection);
                 
-            $_SESSION['logon'] = true;
-           
+            
+            setcookie("logon",true,time()+(6400 *30),"/");
             setcookie("fname",$tempFName,time()+(6400 *30),"/");
             setcookie('lname',$tempLName,time()+(6400 *30),"/");
             

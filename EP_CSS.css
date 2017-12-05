@@ -13,19 +13,17 @@ body{
     
     
 }
-table, td, th {    
-    
-    
-   
-}
 
-.tableBorder {
+
+.tb {
+    border: 2px solid #ddd;
     border-collapse: collapse;
-   margin-bottom:5px;
-   border: 1px solid #ddd;
+    
+        
 }
 
-th, td {
+th.tb, td.tb, tr.tb {
+    border:1px solid #ddd;
     padding: 15px;
 }
 .homepageWrapper{
@@ -153,11 +151,8 @@ th, td {
 }
 
 td{
-/*    color:blue;
-    background-color:grey;
-    */
+   
     padding:10px;
-
     text-align:center;
 }
 .ft{
@@ -237,7 +232,13 @@ td{
     text-decoration: none;
     color:black;
 }
-
+.name{
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
 li a {
    display: block;
     color: white;

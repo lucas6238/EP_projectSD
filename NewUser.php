@@ -24,7 +24,7 @@ include ("helperfunctions.php");
         
         <div id="outwrap">
         <div id="NewUserGrid">
-        <div id="NUI"><img src="wmu.png" width="200px" height="200px"></div>
+            <div id="NUI"><img src="pictures/Img-WMU.png" width="200px" height="200px"></div>
         <div id="NUHeader" style="text-align:  center;"><h1> Create New Account </h1></div>
             <div id="NUForm">
                 <form  method='POST' id="createAccount">
@@ -75,9 +75,8 @@ include ("helperfunctions.php");
                     <td></td>
                     <td></td>
                 </table>
-            </div>
-        </div>
-    </div>
+            
+        
             
         
         
@@ -135,7 +134,7 @@ include ("helperfunctions.php");
                             
                         } 
                         else {
-                        echo "Email does not exist <br>";
+                        echo "Email does not exist and can be used <br>";
                         $emailSuccess = true;
                         } 
                     }
@@ -206,9 +205,9 @@ include ("helperfunctions.php");
 if ($fnameSuccess && $lnameSuccess && $emailSuccess 
        
         && $passwordSuccess && $keySuccess) { 
-        $tempID= rand(100000,999999);
+        
             $sqlInsert = "INSERT into user "
-                    . "values ('$tempID','$fname','$lname','$hpass',"
+                    . "values ('$fname','$lname','$hpass',"
                     . "'$emailChecked')";
 
             if (mysqli_query($connection, $sqlInsert)) {
@@ -223,7 +222,11 @@ if ($fnameSuccess && $lnameSuccess && $emailSuccess
        
         mysqli_close($connection);
         ?>
-        
-        
+                
+        </div>
+        </div>
+        </div>
+            
+
     </body>
 </html>

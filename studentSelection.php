@@ -22,14 +22,20 @@
 ?>
 
 <body>
-    <ul>
-     <li><a href='homepage.php'>Home</a></li>
-     <li><a href='studentSelection.php'>Student</a></li>
-     <li><a href='QuestionSelection.php'>Question</a></li>
-     <li style="float:right;"><a href="SignIn.php">Log off </a></li>    
-    </ul>
     <?php
+        if((filter_input(INPUT_COOKIE,"logon")) ==  true){
+            
+        }
+        else{
+            echo "you have not logged on";
+            header('Location: SignIn.php');
+        }
+        ?>
     
+   
+    <?php
+    error_reporting(0);
+    include('EP_Header.php');
     include('CreateGraph.php');
     include('connectDatabase.php');
     ////this line of php code refences another php file that will run at this point in the program
@@ -146,7 +152,7 @@
          </form>       
             <div id="DatesTotal-chart-1"></div>
             <div id="DatesTotal-chart-2"></div>
-            <div id="DatesTotal-chart-3"></div>
+            
                 
 
 

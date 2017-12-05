@@ -34,35 +34,35 @@ if ($queryResult2 === FALSE) {
 }
 
 echo"<h2>Student " . $studentID . " Specific Results</h2>" .
- "<table width='100%' border='1' class=\"tableBoarder\">" .
- "<th>Session</th>" .
- "<th>Date</th>" .
- "<th>Percent Score</th>" .
- "<th>Points Earned</th>" .
- "<th>Max Points Possible</th>" .
- "tr>";
+ "<table width='100%' class=\"tb\">" .
+ "<th class=\"tb\">Session</th>" .
+ "<th class=\"tb\">Date</th>" .
+ "<th class=\"tb\">Percent Score</th>" .
+ "<th class=\"tb\">Points Earned</th>" .
+ "<th class=\"tb\">Max Points Possible</th>" .
+ "<tr>";
 
 
 while ($row = mysqli_fetch_assoc($queryResult2)) {
 
     // extract($row);
-    echo "<tr><td>" . $row["Session"] . "</td>\n";
-    echo "<td>" . $row["Date"] . "</td>\n";
+    echo "<tr class=\"tb\"><td class=\"tb\">" . $row["Session"] . "</td>\n";
+    echo "<td  class=\"tb\">" . $row["Date"] . "</td>\n";
     
     if(round($row["Total"] / ($row["QuestionAmount"] * 2) >=.75)){
-        echo "<td class=\"goodScore\">";
+        echo "<td class=\"goodScore tb\">";
     }
    else if(round($row["Total"] / ($row["QuestionAmount"] * 2) <.75) &&
            round($row["Total"] / ($row["QuestionAmount"] * 2) >=.25) ){
-                echo "<td class=\"mScore\">";
+                echo "<td class=\"mScore tb\">";
 
     }
     else{
-        echo "<td class=\"badScore\">";
+        echo "<td class=\"badScore tb\">";
     }
     echo  round($row["Total"] / ($row["QuestionAmount"] * 2), 2) * 100 . "%</td>\n";
-    echo "<td>" . $row["Total"] . "</td>\n";
-    echo "<td>" . $row["QuestionAmount"] * 2 . "</td>\n";
+    echo "<td  class=\"tb\">" . $row["Total"] . "</td>\n";
+    echo "<td  class=\"tb\">" . $row["QuestionAmount"] * 2 . "</td>\n";
     echo "</tr>\n";
     "</table>\n";
 }

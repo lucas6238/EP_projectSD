@@ -22,6 +22,16 @@
 ?>
 
 <body>
+  <?php
+        if((filter_input(INPUT_COOKIE,"logon")) ==  true){
+          
+        }
+        else{
+            echo "you have not logged on";
+            header('Location: SignIn.php');
+        }
+        ?>
+    
     <?php include("EP_Header.php"); ?>
  
     

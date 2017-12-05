@@ -15,7 +15,7 @@
 
 
 
-if ($queryResult2 === FALSE) {
+if($queryResult2 === FALSE) {
     echo "<p>Unable to execute the query.</p>"
     . "<p>Error code " . mysqli_errno($connection)
     . ": " . mysqli_error($connection) . "</p>";
@@ -36,10 +36,10 @@ if ($queryfindAmount) {
 
 
 echo"<h2>Student " . $studentID . " Specific Results for " . $dateID . "</h2>" .
- "<table width='100%' border='1'>" .
- "<th>Session</th>" .
- "<th>Question</th>" .
- "<th>Score</th>" .
+ "<table width='100%'  class=\"tb\">" .
+ "<th class=\"tb\">Session</th>" .
+ "<th class=\"tb\">Question</th>" .
+ "<th class=\"tb\">Score</th>" .
 
  "<tr>";
 
@@ -54,7 +54,8 @@ while ($row = mysqli_fetch_assoc($queryResult2)) {
     
    
         while($tempCount<$foundAmount+1){
-       echo "<tr><td>".$row["Session"]."</td><td>Q" . $tempCount . "</td><td>" . $row["Q".$tempCount] . "</td></tr>";
+       echo "<tr  class=\"tb\"><td class=\"tb\">".$row["Session"]."</td><td class=\"tb\""
+               . ">Q" . $tempCount . "</td><td class=\"tb\">" . $row["Q".$tempCount] . "</td></tr>";
        $tempCount++;
        $recordExist =true;
        }

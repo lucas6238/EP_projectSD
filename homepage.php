@@ -1,18 +1,24 @@
 <?php echo ("<?xml version=\"1.0\" encoding=\"utf-8\"?" . ">"); ?>
 <!DOCTYPE html>
 <!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
+
 -->
 <html>
     <head>
-        <title>TODO supply a title</title>
+        <title>Home Page</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
     </head>
     <body>
-        
+       <?php
+        if((filter_input(INPUT_COOKIE,"logon")) ==  true){
+            
+        }
+        else{
+            echo "you have not logged on";
+            header('Location: SignIn.php');
+        }
+        ?>
         
     
         
@@ -23,7 +29,7 @@ and open the template in the editor.
         ?>
         
         <div class="outsideWrapper">
-            <h1 class="header"><img src="hcob2.jpg" width="20%" height="20%">Clicker-Viewer</h1>
+            <h1 class="header"><img src="pictures/hcob2.jpg" width="20%" height="20%">Clicker-Viewer</h1>
             <?php
         
         ?>

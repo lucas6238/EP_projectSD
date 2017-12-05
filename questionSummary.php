@@ -66,14 +66,14 @@ if ($processQuery) {
     }
 
     echo"<h2>Question Specific Results</h2>" .
-    "<table width='100%' border='1'class=\"tableBorder\">" .
-    "<tr><th>Session</th>" .
-    "<th>Date</th>" .
-    "<th>Question</th>" .
-    "<th>Number of Responses</th>" .
-    "<th>Average Points Scored</th>" .
-    "<th>Percentage of Correct Responses</th>" .
-    "<th>Students that missed this Question</th>";
+    "<table width='100%' class=\"tb\">" .
+    "<tr  class=\"tb\"><th>Session</th>" .
+    "<th  class=\"tb\">Date</th>" .
+    "<th  class=\"tb\">Question</th>" .
+    "<th  class=\"tb\">Number of Responses</th>" .
+    "<th  class=\"tb\">Average Points Scored</th>" .
+    "<th  class=\"tb\">Percentage of Correct Responses</th>" .
+    "<th  class=\"tb\">Students that missed this Question</th>";
 
 
    
@@ -82,27 +82,28 @@ if ($processQuery) {
         $passQuestion = $row["Question"];
         // extract($row);
         if(strcasecmp($row["Session"], "11AM")){
-            echo"<tr class=\"elevenAM\">";
+            echo"<tr class=\"elevenAM tb\">";
         }
         else{
             echo"<tr>";
         }
-        echo "<td>" . $row["Session"] . "</td>\n";
-        echo "<td>" . $row["Date"] . "</td>\n";
-        echo "<td>" . $row["Question"] . "</td>\n";
-        echo "<td>" . $row["Responses"] . "</td>\n";
+        echo "<td  class=\"tb\">" . $row["Session"] . "</td>\n";
+        echo "<td  class=\"tb\">" . $row["Date"] . "</td>\n";
+        echo "<td  class=\"tb\">" . $row["Question"] . "</td>\n";
+        echo "<td  class=\"tb\">" . $row["Responses"] . "</td>\n";
         if ($row["AveragePoints"] <= .5) {
-            echo "<td class=\"badScore\">" . $row["AveragePoints"] . "</td>\n";
+            echo "<td class=\"badScore tb\">" . $row["AveragePoints"] . "</td>\n";
         }
         if ($row["AveragePoints"] >= 1.5) {
-            echo "<td class=\"goodScore\">" . $row["AveragePoints"] . "</td>\n";
+            echo "<td class=\"goodScore tb\">" . $row["AveragePoints"] . "</td>\n";
         }
         if ($row["AveragePoints"] < 1.5 && $row["AveragePoints"] > .5) {
-            echo "<td class=\"mScore\">" . $row["AveragePoints"] . "</td>\n";
+            echo "<td class=\"mScore tb\">" . $row["AveragePoints"] . "</td>\n";
         }
 
-        echo "<td>" . ($row["AveragePercentage"] * 100) . "%</td>\n";
-        echo "<td><a href=\"StudentMissedQuestion.php?dataDate=$passDate & dataQuestion=$passQuestion\">Link </a></td>\n";
+        echo "<td  class=\"tb\">" . ($row["AveragePercentage"] * 100) . "%</td>\n";
+        echo "<td  class=\"tb\"><a href=\"StudentMissedQuestion.php?dataDate=$passDate & dataQuestion=$passQuestion\">"
+                . " Students That Missed Question $passQuestion </a></td>\n";
 
         "\">Update</a></td></tr>\n" .
                 "</table>\n";
@@ -124,24 +125,24 @@ $SQLString11AM = "select Question,AveragePoints,AveragePercentage, Responses fro
 if (empty($sessionID)) {
     //echoecho "render both graphs";
     
-    MakeBarChart("Column2D","Average Points for $dateID Session 11AM", "Graph10", "PQ-chart-1", "Question", "AveragePoints",$SQLString10AM);
+    MakeBarChart("Column2D","Average Points for $dateID Session 11AM", "Graph10", "PQ-chart-1", "Question", "AveragePoints",$SQLString10AM,0);
     
-    MakeBarChart("Column2D","Average Points for $dateID Session 10AM", "Graph20", "PQ-chart-2", "Question", "AveragePoints",$SQLString11AM);
+    MakeBarChart("Column2D","Average Points for $dateID Session 10AM", "Graph20", "PQ-chart-2", "Question", "AveragePoints",$SQLString11AM,0);
 } else {
     echo "single graph";
-    echo MakeBarChart("Column2D","Average Points for $dateID Session $sessionID", "Graph30", "PQ-chart-3", "Question", "AveragePoints",$SQLStringEither);
+    echo MakeBarChart("Column2D","Average Points for $dateID Session $sessionID", "Graph30", "PQ-chart-3", "Question", "AveragePoints",$SQLStringEither,0);
 }    
 
  //PERCENTAGE SECTION
 
 if (empty($sessionID)) {
     //echo "render both graphs";
-    MakeBarChart("line","Responses Per Question for $dateID Session 11AM", "Graph40", "RQ-chart-1", "Question", "Responses",$SQLString10AM);
+    MakeBarChart("line","Responses Per Question for $dateID Session 11AM", "Graph40", "RQ-chart-1", "Question", "Responses",$SQLString10AM,1);
 
-    MakeBarChart("line","Responses Per Question for $dateID Session 10AM", "Graph50", "RQ-chart-2", "Question", "Responses",$SQLString11AM);
+    MakeBarChart("line","Responses Per Question for $dateID Session 10AM", "Graph50", "RQ-chart-2", "Question", "Responses",$SQLString11AM,1);
 } else {
     echo "single graph";
-    echo MakeBarChart("line","Responses Per Question for $dateID Session $sessionID", "Graph60", "RQ-chart-3", "Question", "Responses", $SQLStringEither);
+    echo MakeBarChart("line","Responses Per Question for $dateID Session $sessionID", "Graph60", "RQ-chart-3", "Question", "Responses", $SQLStringEither,1);
 }
 
 //ATTENDENCE PIE CHART

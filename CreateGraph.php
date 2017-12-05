@@ -35,7 +35,7 @@ include("js/fusioncharts.php");
         }
 
         //caption chartID label value table date session
-        function MakeBarChart($chartType, $caption, $UchartID, $chartID, $label, $value, $SQLString) {
+        function MakeBarChart($chartType, $caption, $UchartID, $chartID, $label, $value, $SQLString,$adaptive) {
             //this graph displays average points for a specific quesiton on a specific date session
 
             $queryResult = mysqli_query($_SESSION["connection"], $SQLString);
@@ -47,7 +47,8 @@ include("js/fusioncharts.php");
                     "chart" => array(
                         "caption" => $caption,
                         "showValues" => "0",
-                        "theme" => "carbon"
+                        "theme" => "carbon",
+                        "setAdaptiveYMin" => $adaptive
                     )
                 );
                 $arrData["data"] = array();

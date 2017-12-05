@@ -64,8 +64,8 @@ function ifPasswordMatches($email, $pass, $conn) {
             $row = mysqli_fetch_assoc($result);
 
             $foundhash = $row["HashedPassword"];
-            echo "input password " . $pass . "<br>";
-            echo "found hash " . $foundhash . "<br>";
+            //echo "input password " . $pass . "<br>";
+           // echo "found hash " . $foundhash . "<br>";
             $verify = password_verify($pass, $foundhash);
             if ($verify) {
                 $pBool = true;

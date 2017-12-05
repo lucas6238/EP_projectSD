@@ -26,7 +26,7 @@ and open the template in the editor.
         <div class="outsideWrapper">
         
             
-                <img class="splashIMG" src="wmu.png" >
+                <img class="splashIMG" src="pictures/Img-WMU.png" >
                 <h2 class="splshText">Login to Clicker Data Viewer</h2>
 <div class="center">
                 <form action="
@@ -50,11 +50,14 @@ and open the template in the editor.
                 </table>
             
         </div>
+                <?php
+               include('SignInBottom.php'); 
+               ?>
         </div>
 
 
         <?php
-        include('SignInBottom.php');
+        
         include("EP_Footer.php");
          
          

@@ -11,5 +11,7 @@
      <li><a href='homepage.php'>Home</a></li>
      <li><a href='studentSelection.php'>Student</a></li>
      <li><a href='QuestionSelection.php'>Question</a></li>
-      <li style="float:right;"><a href="SignIn.php">Log off </a></li>    
+     <li style="float:right;"><a href="LogOff.php">Log off </a></li>
+     <li style="float:right;" class="name">Logged on as <?php echo $_COOKIE['fname'] . " " . $_COOKIE['lname']; ?></li>
+         
  </ul>
